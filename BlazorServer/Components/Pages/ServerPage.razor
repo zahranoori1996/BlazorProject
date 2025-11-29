@@ -1,9 +1,20 @@
 ﻿@page "/serverpage"
 <PageTitle>صفحه سرور ها</PageTitle>
-<ServerBoxComponent></ServerBoxComponent>
-<ServerBoxComponent></ServerBoxComponent>
-<ServerBoxComponent></ServerBoxComponent>
+
+<ul>
+    @foreach( var server in lstServer)
+    {
+        <li>
+            @server.ServerName در @server.ServerCountry - وضعیت :
+            <span style="color: @(server.ServerIsOnline ? "#19D436" : "#F53A16")">
+                <b> @(server.ServerIsOnline ? "آنلاین" : "آفلاین")</b>
+            </span>
+        </li>
+    }
+</ul>
 
 @code {
+    private List<Server> lstServer = MyDatabase.GetAllServers();
+    // private List<Server> lstServer = MyDatabase.GetServersCountry("ایران");
 
 }

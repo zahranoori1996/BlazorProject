@@ -94,5 +94,10 @@
                 Servers.Remove(serverDelete);
             }
         }
+
+        public static List<Server> GetServersCountry(string country)
+        {
+            return Servers.Where(s => s.ServerCountry == country.Trim()).ToList();
+        }
     }
 }
