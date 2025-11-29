@@ -1,5 +1,9 @@
-﻿<h3>@serverMessage - @DateTime.Now</h3>
+﻿<h3 >
+    @server.ServerName - @DateTime.Now - @server.ServerCountry - server is
+    <span style="@($"color:{(server.ServerIsOnline?"green":"red")}")"
+        data-status="@(server.ServerIsOnline ? "online" : "offline") ">@(server.ServerIsOnline ? "آنلاین" : "آفلاین")</span>
+</h3>
 
 @code {
-    private string serverMessage = "سرور آنلاین است";
+    Server server = new Server() { ServerName = "server 1" ,ServerCountry = "Iran" };
 }
