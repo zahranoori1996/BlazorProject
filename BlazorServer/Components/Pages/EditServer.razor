@@ -1,0 +1,52 @@
+﻿@page "/serverpage/edit/{serverId:int}"
+<h3>ویرایش سرور</h3>
+<p>
+    شناسه سرور برای ویرایش : @serverId
+</p>
+@* <EditForm Model="server">
+    
+</EditForm> *@
+
+@if(server != null)
+{
+<EditForm Model="server">
+        <div class="mb-3">
+            <label for="serverName" class="form-label">نام سرور : </label>
+            <InputText id="serverName" class="form-control" placeholder="نام سرور" @bind-value="server.ServerName"></InputText>
+        </div>
+        <div class="mb-3">
+            <label for="serverName" class="form-label">نام کشور سرور :</label>
+            <InputText id="serverName" class="form-control" placeholder="کشور سرور" @bind-value="server.ServerCountry"></InputText>
+        </div>
+    <InputCheckbox class="form-check" @bind-Value="server.ServerIsOnline"></InputCheckbox>
+</EditForm> 
+}
+else
+{
+<div class="alert alert-info">
+    سرور یافت نشد دوست خوب من 
+</div>
+}
+
+<a href="/serverpage" class="btn btn-secondary mt-3">بازگشت به صفحه سرورها</a>
+
+
+
+
+
+@code {
+
+    [Parameter]
+    public int serverId { get; set; }
+
+    private Server? server;
+    
+    protected override void OnParametersSet()
+    {
+        server = MyDatabase.GetServerById(serverId);
+
+
+
+        // base.OnParametersSet();
+    }
+}

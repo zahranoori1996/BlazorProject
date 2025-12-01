@@ -1,5 +1,13 @@
+﻿@font-face {
+    font-family: 'MyPersianFont';
+    src: url('fonts/Arad-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* برای لود سریع‌تر متن */
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'MyPersianFont', Helvetica, Arial, sans-serif;
 }
 
 a, .btn-link {

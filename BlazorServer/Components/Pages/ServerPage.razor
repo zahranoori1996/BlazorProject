@@ -1,20 +1,29 @@
 ﻿@page "/serverpage"
 <PageTitle>صفحه سرور ها</PageTitle>
 
-<ul>
+<div class="d-flex flex-row flex-wrap gap-2 mb-4">
+    @foreach (var country in countries)
+    {
+        <button type="button" class="btn btn-outline-info px-3">@country</button>
+    }
+</div>
+<ul class="list-group">
     @foreach( var server in lstServer)
     {
-        <li>
-            @server.ServerName در @server.ServerCountry - وضعیت :
+        <li class="d-flex justify-content-between list-group-item list-group-item-action">
+            <span class="w-25">@server.ServerName در @server.ServerCountry - وضعیت :</span>
             <span style="color: @(server.ServerIsOnline ? "#19D436" : "#F53A16")">
                 <b> @(server.ServerIsOnline ? "آنلاین" : "آفلاین")</b>
             </span>
+            &nbsp; <a href="/serverpage/edit/@server.ServerId" class="btn btn-sm btn-warning mx-2">ویرایش</a>
         </li>
     }
 </ul>
 
 @code {
-    private List<Server> lstServer = MyDatabase.GetAllServers();
-    // private List<Server> lstServer = MyDatabase.GetServersCountry("ایران");
+    // private List<Server> lstServer = MyDatabase.GetServers();
+    private List<Server> lstServer = MyDatabase.GetServersCountry("ایران");
+    private List<string> countries = MyDatabase.GetCountries();
+    // private List<string> countries = MyDatabase.GetListCountries();
 
 }
